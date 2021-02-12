@@ -1,3 +1,18 @@
+/*
+  // un exemple de fetch pour commencer
+  const demo = async () => {
+    // on peut attendre le retour du fetch dans une fonction asynchrone
+    const reponse = await fetch('http://localhost:3000/lists', {
+      method: 'GET'
+    });
+    // on peut ensuite transformer le json de la réponse en données exploitables dans notre script, la méthode json retourne une promesse il faut attendre
+    const data = await reponse.json();
+    app.makeListInDOM(data[0].name);
+  };
+  demo();
+*/
+
+
 
 // on objet qui contient des fonctions
 const app = {

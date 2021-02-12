@@ -210,6 +210,7 @@
         </div>
     </section>
 
+    <!-- modale des listes -->
     <div class="modal" id="addListModal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -234,16 +235,41 @@
         </div>
     </div>
 
+    <!-- modale des cartes -->
+    <div class="modal" id="addCardModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <form action="" method="POST" id="addCardForm">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Ajouter une carte</p>
+                    <button class="delete close" type="button" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                            <input type="text" class="input" name="cardName" value="" placeholder="Nom de la carte">
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success">Save changes</button>
+                    <button class="button close" type="button">Cancel</button>
+                </footer>
+            </form>
+        </div>
+    </div>
+
     <template id="listTemplate">
-        <div class="column is-one-quarter panel" data-list-id="A">
+        <div class="column is-one-quarter panel" data-list-id="???">
             <div class="panel-heading has-background-info">
                 <div class="columns">
 
                     <div class="column">
-                        <h2 class="has-text-white">Perso</h2>
+                        <h2 class="has-text-white">???</h2>
 
                         <form action="" method="POST" class="is-hidden">
-                            <input type="hidden" name="list-id" value="1">
+                            <input type="hidden" name="list-id" value="???">
                             <div class="field has-addons">
                                 <div class="control">
                                     <input type="text" class="input is-small" name="list-name" value=""
@@ -266,29 +292,33 @@
                 </div>
             </div>
             <div class="panel-block is-block has-background-light">
-                <!-- card -->
-                <div class="box" data-card-id="I">
-                    <div class="columns">
-                        <div class="column">
-                            Faire les courses
-                        </div>
-                        <div class="column is-narrow">
-                            <a href="#">
-                                <span class="icon is-small has-text-primary">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </span>
-                            </a>
-                            <a href="#">
-                                <span class="icon is-small has-text-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!--/ card -->
+                <!-- On pourra ajouter des cartes ici -->
             </div>
         </div>
+    </template>
+
+    <template id="cardTemplate">
+        <!-- card -->
+        <div class="box" data-card-id="???">
+            <div class="columns">
+                <div class="column">
+                    ???
+                </div>
+                <div class="column is-narrow">
+                    <a href="#">
+                        <span class="icon is-small has-text-primary">
+                            <i class="fas fa-pencil-alt"></i>
+                        </span>
+                    </a>
+                    <a href="#">
+                        <span class="icon is-small has-text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--/ card -->
     </template>
 
     <!-- Chargement de mon fichier JS -->
