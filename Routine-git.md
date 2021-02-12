@@ -8,6 +8,7 @@
   - `git clone monDepotPerso`
 - Ajouter la remote de correction
   - `git remote add correction git@github.com:O-clock-Pan/S07-oKanban-front-alexisOclock.git`
+  - /!\\ Si vous aviez déjà renseigné la remote RED en jour 1, vous pouvez remplacer la remote ainsi  : `git remote set-url correction git@github.com:O-clock-Pan/S07-oKanban-front-alexisOclock.git`
 
 ## A faire au quotidien
 
