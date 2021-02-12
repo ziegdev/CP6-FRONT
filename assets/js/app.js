@@ -3,6 +3,7 @@
 const app = {
   // fonction d'initialisation, lancée au chargement de la page
   init: function () {
+    app.formElement = document.querySelector('#addListForm');
     app.modalElement = document.querySelector('#addListModal');
     app.addListenerToActions();
   },
@@ -22,10 +23,24 @@ const app = {
       closeButton.addEventListener('click', app.hideModals);
     });
     // objectif : afficher une liste dans la page à la validation du formulaire
-    // cibler le formulaire
-    console.log(document.querySelector('#addListForm'));
     // réagir à la soumission
-      // créer une liste dans le DOM
+    app.formElement.addEventListener('submit', app.handleAddListForm);
+  },
+
+  handleAddListForm: function(event) {
+    // j'empeche le comportement par défaut de l'événeement
+    event.preventDefault(); 
+    // récupérer la valeur du champ
+    // grace au constructeur FormData je peux passer à la moulinette un form et ses champs, pour voir ensuite lire facilement les valeurs des champs
+    const data = new FormData(app.formElement);
+    // l'objet de data construit par FormData possède une méthode get permettant de récupérer la valeur d'un champ en fonction de son nom (son attribut name)
+    const inputValue = data.get('name');
+    // créer une liste dans le DOM avec la valeur du champ
+    app.makeListInDOM(inputValue);
+  },
+
+  makeListInDOM: function(listName) {
+    console.log('je crée la liste qui s\'appelle ' + listName);
   },
 
   hideModals: function() {
