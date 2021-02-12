@@ -34,13 +34,33 @@ const app = {
     // grace au constructeur FormData je peux passer à la moulinette un form et ses champs, pour voir ensuite lire facilement les valeurs des champs
     const data = new FormData(app.formElement);
     // l'objet de data construit par FormData possède une méthode get permettant de récupérer la valeur d'un champ en fonction de son nom (son attribut name)
-    const inputValue = data.get('name');
+    const inputValue = data.get('listName');
     // créer une liste dans le DOM avec la valeur du champ
     app.makeListInDOM(inputValue);
+    // je ferme la modale
+    app.hideModals();
   },
 
   makeListInDOM: function(listName) {
     console.log('je crée la liste qui s\'appelle ' + listName);
+    // je cible mon template
+    const template = document.querySelector('#listTemplate');
+    // je clone son contenu
+    // const clone = document.importNode(template.content, true);
+    const clone = template.content.cloneNode(true);
+    // je configure le clone
+    const title = clone.querySelector('h2');
+    title.textContent = listName;
+    const panel = clone.querySelector('.panel');
+    panel.setAttribute('data-list-id', 'X');
+    // j'injecte le clone dans ma page
+    // document.querySelector('.columns').appendChild(clone);
+    // cibler le bouton
+    const btn = document.querySelector('#addListButton');
+    // trouver son parent column
+    const column = btn.closest('.column');
+    // injecter avant le clone, on connait appendChild qui insère un enfant à la fin d'un parent. .before insère notre enfant à coté et juste avant un élement cible
+    column.before(clone);
   },
 
   hideModals: function() {
