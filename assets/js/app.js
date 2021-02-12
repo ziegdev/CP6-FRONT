@@ -21,7 +21,11 @@ const app = {
     closeButtons.forEach((closeButton) => {
       closeButton.addEventListener('click', app.hideModals);
     });
-
+    // objectif : afficher une liste dans la page à la validation du formulaire
+    // cibler le formulaire
+    console.log(document.querySelector('#addListForm'));
+    // réagir à la soumission
+      // créer une liste dans le DOM
   },
 
   hideModals: function() {
