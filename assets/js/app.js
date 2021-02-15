@@ -16,6 +16,10 @@
 
 // on objet qui contient des fonctions
 const app = {
+
+  base_url: 'http://localhost:3000',
+  // base_url: 'http://localhost:3001',
+
   // fonction d'initialisation, lancée au chargement de la page
   init: function () {
     // je mémorise des élements pour plus tard
@@ -25,6 +29,20 @@ const app = {
     app.cardFormElement = document.querySelector('#addCardForm');
     app.cardModalElement = document.querySelector('#addCardModal');
     app.addListenerToActions();
+    // j'execute ma tache asynchrone pour récupérer et générer les listes
+    app.getListsFromAPI();
+  },
+
+  // on fait une fonction asynchrone car on ne veut pas mettre en pause le script, il continue son execution
+  getListsFromAPI: async function() {
+    // on attend la réponse de l'api
+    const response = await fetch(`${app.base_url }/lists`);
+    // on attend l'analyse du corps de la réponse en json
+    const body = await response.json();
+    // on dit quoi fait des donnée récupérées, ici pour chaque liste on génère une liste dans le DOM, on a tranposé une donnée brut vers une interface facilement compréhensible par mon utilisateur
+    for (list of body) {
+      app.makeListInDOM(list.name);
+    }
   },
 
   addListenerToActions: function() { 
