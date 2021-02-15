@@ -74,12 +74,6 @@ const app = {
     // réagir à la soumission
     app.listFormElement.addEventListener('submit', app.handleAddListForm);
 
-    // on cible les + pour l'ajout de cartes
-    const cardButtonElements = document.querySelectorAll('.panel-heading a');
-    cardButtonElements.forEach((button) => {
-      button.addEventListener('click', app.showAddCardModal);
-    });
-
     // soumission du formulaire des card
     app.cardFormElement.addEventListener('submit', app.handleAddCardForm);
   },
@@ -133,10 +127,16 @@ const app = {
     // const clone = document.importNode(template.content, true);
     const clone = template.content.cloneNode(true);
     // je configure le clone
-    const title = clone.querySelector('h2');
+    const title = clone.querySelector('.list-title');
     title.textContent = listName;
+    title.addEventListener('dblclick', app.showEditListForm);
+    const form = clone.querySelector('form');
+    form.addEventListener('submit', app.handleEditListForm);
     const panel = clone.querySelector('.panel');
     panel.setAttribute('data-list-id', listId);
+    // on cible le champ caché via un selecteur d'attribut
+    const input = form.querySelector('input[name="list-id"]');
+    input.setAttribute('value', listId);
     // /!\ on écoute le click sur le + de la nouvelle liste aussi !
     clone.querySelector('.panel-heading a').addEventListener('click', app.showAddCardModal);
     // trouver le parent column du bouton
@@ -184,6 +184,55 @@ const app = {
     const id = parent.getAttribute('data-list-id');
     // on modifie la valeur du champ caché
     app.cardModalElement.querySelector('input[name="listId"]').value = id;
+  },
+
+  showEditListForm: function(event) {
+    const titleElement = event.target;
+    // la propriété nextElementSibling permet de cibler le voisin suivant direct d'un element (frère/soeur)
+    // de la meme manière il existe previousElementSibling pour récupérer le voisin précédent
+    const formElement = titleElement.nextElementSibling;
+    titleElement.classList.add('is-hidden');
+    formElement.classList.remove('is-hidden');
+  },
+
+  handleEditListForm: async function(event) {
+    // on empeche la soumission par défaut
+    event.preventDefault();
+
+    // on cible le formulaire et le titre à manipuler
+    const formElement = event.target;
+    const titleElement = formElement.previousElementSibling;
+
+    // on génère les paires clés/valeurs pour tout ce qu'il y a dans le formulaire
+    const data = new FormData(formElement);
+
+    // on récupère l'id de la liste à modifier
+    const listId = data.get('list-id');
+
+    try  { 
+      // on appelle l'api sur le bon endpoint pour faire persister le changements de la liste souhaitée
+      const response = await fetch(`${app.base_url}/lists/${listId}`, {
+        method: 'PATCH',
+        body: data,
+      });
+      const body = await response.json();
+      // en fonction de la réponse si tout va bien  
+      if (response.status === 200) {
+        // on met à jour le titre dans le DOM
+        titleElement.textContent = body.name;
+      }
+      else {
+        // si tout va mal on affiche une erreur
+        throw new Error(body);
+      }
+
+    } catch(error) {
+      alert('Problème lors de la mise à jour la liste');
+      console.error(error);
+    }
+    // on réaffiche le titre
+    titleElement.classList.remove('is-hidden');
+    formElement.classList.add('is-hidden');
   },
 
 };
