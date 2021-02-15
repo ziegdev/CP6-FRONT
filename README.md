@@ -1,5 +1,12 @@
 # oKanban-front, jours 3 et 4
 
+- Au choix :
+  - Si les début avec fetch était difficile on reprend listing / création / édition des cards sur l'exemple des listes corrigées ensemble (on corrigera en cockpit optionnel demain)
+  - Si tout va bien sur les cartes et les listes on a le choix parmi la suite :
+    - La suppression de carte peut etre assez accessible
+    - Le drag & drop est fun mais pas simple (on le corrigera en e5)
+    - La gestion des tags peut etre assez longue mais permet de revenir sur creation, listing, edition, suppression, ...
+
 On continue de coder les fonctionalités de notre application !
 
 Ajoute tout le HTML, le CSS et le Javascript qui te sembleront nécessaire. Soit inventif/inventive pour les interfaces graphiques !
