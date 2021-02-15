@@ -44,7 +44,7 @@ const app = {
       if (response.status === 200) {
         // on dit quoi faire des données récupérées, ici pour chaque liste on génère une liste dans le DOM, on a tranposé une donnée brut vers une interface facilement compréhensible par mon utilisateur
         for (list of body) {
-          app.makeListInDOM(list.name);
+          app.makeListInDOM(list.name, list.id);
         }
       }
       // si l'api nous répond mais que la réponse est une erreur (par exemple si on obtient code 40X)
@@ -112,7 +112,7 @@ const app = {
     app.hideModals();
   },
 
-  makeListInDOM: function(listName) {
+  makeListInDOM: function(listName, listId) {
     // je cible mon template
     const template = document.querySelector('#listTemplate');
     // je clone son contenu
@@ -122,7 +122,7 @@ const app = {
     const title = clone.querySelector('h2');
     title.textContent = listName;
     const panel = clone.querySelector('.panel');
-    panel.setAttribute('data-list-id', 'X');
+    panel.setAttribute('data-list-id', listId);
     // /!\ on écoute le click sur le + de la nouvelle liste aussi !
     clone.querySelector('.panel-heading a').addEventListener('click', app.showAddCardModal);
     // trouver le parent column du bouton
