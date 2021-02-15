@@ -35,14 +35,27 @@ const app = {
 
   // on fait une fonction asynchrone car on ne veut pas mettre en pause le script, il continue son execution
   getListsFromAPI: async function() {
-    // on attend la réponse de l'api
-    const response = await fetch(`${app.base_url }/lists`);
-    // on attend l'analyse du corps de la réponse en json
-    const body = await response.json();
-    // on dit quoi fait des donnée récupérées, ici pour chaque liste on génère une liste dans le DOM, on a tranposé une donnée brut vers une interface facilement compréhensible par mon utilisateur
-    for (list of body) {
-      app.makeListInDOM(list.name);
+    try {
+      // on attend la réponse de l'api
+      const response = await fetch(`${app.base_url }/lists`);
+      // on attend l'analyse du corps de la réponse en json
+      const body = await response.json();
+      // si tout va bien
+      if (response.status === 200) {
+        // on dit quoi faire des données récupérées, ici pour chaque liste on génère une liste dans le DOM, on a tranposé une donnée brut vers une interface facilement compréhensible par mon utilisateur
+        for (list of body) {
+          app.makeListInDOM(list.name);
+        }
+      }
+      // si l'api nous répond mais que la réponse est une erreur (par exemple si on obtient code 40X)
+      else {
+        throw new Error(body);
+      }
+    } catch(error) {
+      alert('Erreur lors de la récupération des listes');
+      console.error(error);
     }
+
   },
 
   addListenerToActions: function() { 
