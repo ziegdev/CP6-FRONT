@@ -91,7 +91,12 @@ const app = {
     // grace au constructeur FormData je peux passer à la moulinette un form et ses champs, pour voir ensuite lire facilement les valeurs des champs
     const data = new FormData(app.listFormElement);
     // l'objet de data construit par FormData possède une méthode get permettant de récupérer la valeur d'un champ en fonction de son nom (son attribut name)
-    const inputValue = data.get('listName');
+    const inputValue = data.get('name');
+    // il faut informer notre API qu'on veut mémoriser une nouvelle liste pour qu'elle la fasse persister en BDD
+    fetch(`${app.base_url}/lists`, {
+      method: 'POST',
+      body: data,
+    });
     // créer une liste dans le DOM avec la valeur du champ
     app.makeListInDOM(inputValue);
     // je vide le champ pour les prochaines fois
