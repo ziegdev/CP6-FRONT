@@ -17,8 +17,8 @@
 // on objet qui contient des fonctions
 const app = {
 
-  base_url: 'http://localhost:3000',
-  // base_url: 'http://localhost:3001',
+  // base_url: 'http://localhost:3000',
+  base_url: 'http://localhost:3001',
 
   // fonction d'initialisation, lancée au chargement de la page
   init: function () {
@@ -43,7 +43,10 @@ const app = {
       // si tout va bien
       if (response.status === 200) {
         // on dit quoi faire des données récupérées, ici pour chaque liste on génère une liste dans le DOM, on a tranposé une donnée brut vers une interface facilement compréhensible par mon utilisateur
-        for (list of body) {
+        // code RED : on récupère un tableau
+        // for (list of body) {
+        // code BLUE : on récupère un objet contenant un tableau
+        for (list of body.lists) {
           app.makeListInDOM(list.name, list.id);
         }
       }
@@ -86,14 +89,26 @@ const app = {
     const data = new FormData(app.listFormElement);
     // il faut informer notre API qu'on veut mémoriser une nouvelle liste pour qu'elle la fasse persister en BDD
     try  {
-      const response = await fetch(`${app.base_url}/lists`, {
+      // code RED avec s
+      // const response = await fetch(`${app.base_url}/lists`, {
+      //   method: 'POST',
+      //   body: data,
+      // });
+      // code Blue sans s
+      // coté blue la position est obligatoire
+      // via la méthode append on peut ajouter une paire clé valeur à nos formData
+      data.append('position', 1);
+      const response = await fetch(`${app.base_url}/list`, {
         method: 'POST',
         body: data,
       });
       const body = await response.json();
       if (response.status === 200) {
         // créer une liste dans le DOM avec la valeur du champ
-        app.makeListInDOM(body.name, body.id);
+        // RED
+        // app.makeListInDOM(body.name, body.id);
+        // Blue
+        app.makeListInDOM(body.list.name, body.list.id);
         // je vide le champ pour les prochaines fois
         app.listModalElement.querySelector('input').value = '';
         // je ferme la modale
@@ -211,7 +226,13 @@ const app = {
 
     try  { 
       // on appelle l'api sur le bon endpoint pour faire persister le changements de la liste souhaitée
-      const response = await fetch(`${app.base_url}/lists/${listId}`, {
+      // RED
+      // const response = await fetch(`${app.base_url}/lists/${listId}`, {
+      //   method: 'PATCH',
+      //   body: data,
+      // });
+      // Blue
+      const response = await fetch(`${app.base_url}/list/${listId}`, {
         method: 'PATCH',
         body: data,
       });
@@ -219,7 +240,10 @@ const app = {
       // en fonction de la réponse si tout va bien  
       if (response.status === 200) {
         // on met à jour le titre dans le DOM
-        titleElement.textContent = body.name;
+        // Red
+        // titleElement.textContent = body.name;
+        // Blue
+        titleElement.textContent = body.list.name;
       }
       else {
         // si tout va mal on affiche une erreur

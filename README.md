@@ -1,5 +1,7 @@
 # oKanban-front, jours 3 et 4
 
+/!\ si vous repartez de la correction, pensez à commenter les lignes RED/Blue
+
 - Au choix :
   - Si les début avec fetch était difficile on reprend listing / création / édition des cards sur l'exemple des listes corrigées ensemble (on corrigera en cockpit optionnel demain)
   - Si tout va bien sur les cartes et les listes on a le choix parmi la suite :
