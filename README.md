@@ -1,6 +1,6 @@
 # oKanban-front, jours 3 et 4
 
-/!\ si vous repartez de la correction, pensez à commenter les lignes RED/Blue
+**/!\ si vous repartez de la correction, pensez à commenter les lignes RED/Blue + à modifier la propriété base_url au besoin**
 
 - Au choix :
   - Si les début avec fetch était difficile on reprend listing / création / édition des cards sur l'exemple des listes corrigées ensemble (on corrigera en cockpit optionnel demain)
