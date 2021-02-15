@@ -1,3 +1,37 @@
+# oKanban-front, jours 3 et 4
+
+On continue de coder les fonctionalités de notre application !
+
+Ajoute tout le HTML, le CSS et le Javascript qui te sembleront nécessaire. Soit inventif/inventive pour les interfaces graphiques !
+
+Et si tu as des idées de fonctionnalités interessantes, fait toi plaisir !
+
+N'hésites pas non plus à modifier ou étendre les fonctionnalités de l'API !
+
+Liste des fonctionnalités à coder :
+- Supprimer une carte.
+- Supprimer une liste. Au choix : seulement si elle est vide, ou en supprimant toutes les cartes incluses.
+- Afficher les tags des cartes.
+- Créer un nouveau tag.
+- Modifier un tag.
+- Supprimer un tag.
+- Associer un tag à une carte.
+- Enlever un tag d'une carte.
+- Choix d'une couleur à la création d'une carte.
+- Modifier la couleur d'une carte.
+
+## Les drag and drop
+
+Pour changer l'ordre des cartes dans une liste, et l'ordre des listes dans la page, tu peux utiliser le drag'n'drop ("glisser-déposer", en français).
+
+Ici encore, 2 solutions s'offrent à toi :
+- Tout faire à la main! Il va falloir jouer avec 4 types d'évènement, et définir un bon paquet de paramètres. Tu peux lire [la page de MDN](https://developer.mozilla.org/fr/docs/Web/API/API_HTML_Drag_and_Drop) pour t'aider, mais attends toi à de la difficulté !
+- Utiliser un plugin Javascript ! [SortableJS](https://github.com/SortableJS/Sortable), par exemple.
+
+Quelque soit la solution choisie, il faudra appeller l'API pour mettre à jour les infos de la carte/liste, et peut-être aussi des autres cartes/listes ! (et oui, si la carte numéro 1 devient la numéro 3, alors la numéro 2 devient... :thinking: )
+
+---
+
 # oKanban-front, jour 2
 
 ## Dynamic data !
