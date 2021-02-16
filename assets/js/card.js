@@ -41,7 +41,7 @@ const card = {
     }
   },
 
-  handleEditForm: function(event) {
+  handleEditForm: async function(event) {
     event.preventDefault();
     // -faire persister les modifications saisies par l'utilisateur en BDD via un appel ajax à notre api
     // retrouver l'id de la card
@@ -50,12 +50,28 @@ const card = {
     // const cardId = cardParent.dataset.cardId;
     const cardId = cardParent.getAttribute('data-card-id');
     const data = new FormData(form);
-    fetch(`${util.base_url}/card/${cardId}`, {
-      method: 'PATCH',
-      body: data
-    });
-    // - en cas de succès modifier le dom pour afficher la card modifiée
-    // - sinon afficher une erreur
+    try {
+      const response = await fetch(`${util.base_url}/card/${cardId}`, {
+        method: 'PATCH',
+        body: data
+      });
+      const body = await response.json();
+      if (response.status === 200) {
+        // - en cas de succès modifier le dom pour afficher la card modifiée
+        form.classList.add('is-hidden');
+        const titleElement = form.previousElementSibling;
+        // const titleElement = cardParent.querySelector('.card-name');
+        titleElement.classList.remove('is-hidden');
+        titleElement.textContent = body.card.title;
+      }
+      else {
+        // - sinon afficher une erreur
+        throw new Error(body);
+      } 
+    } catch(error) {
+      alert('Erreur lors de la mise à jour');
+      console.error(error);
+    }
   },
 
   // on récupère un objet représentant la card
