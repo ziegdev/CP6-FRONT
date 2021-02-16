@@ -127,6 +127,14 @@
                 <div class="column card-name">
                     ???
                 </div>
+                <form action="" method="POST" class="column is-hidden">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input type="text" class="input" name="title" value=""
+                                placeholder="Nom de la carte">
+                        </div>
+                    </div>
+                </form>
                 <div class="column is-narrow">
                     <a href="#">
                         <span class="icon is-small has-text-primary">
@@ -152,3 +160,14 @@
 </body>
 
 </html>
+
+<!-- 
+    Objectif : pouvoir éditer une card
+    - préparer un formulaire d'édition
+    - au click sur le crayon
+      - afficher le formulaire
+    - a la soumission du formulaire
+      - faire persister les modifications saisies par l'utilisateur en BDD via un appel ajax à notre api
+      - en cas de succès modifier le dom pour afficher la card modifiée
+      - sinon afficher une erreur
+ -->
