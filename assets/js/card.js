@@ -59,7 +59,23 @@ const card = {
   // quoi faire au click sur le crayon
   showEditForm: function(event) {
     event.preventDefault();
-    console.log('je réagis au click');
+    // afficher le formulaire d'édition // cibler le formulaire et lui enlever la classe is-hidden
+    // on identifie le crayon cliqué
+    const pencil = event.target;
+    // on trouve la carte parent
+    const cardElement = pencil.closest('.box');
+    // on trouve son enfant form
+    const form = cardElement.querySelector('form');
+    // on enleve la classe is-hidden
+    form.classList.remove('is-hidden');
+    // masquer le nom de la carte
+    const title = cardElement.querySelector('.card-name');
+    title.classList.add('is-hidden');
+    // on prérempli le champ
+    const input = form.querySelector('input[name="title"]')
+    input.value = title.textContent;
+    // on le cible via la méthode focus sur l'élement input
+    input.focus();
   },
 
   showAddModal: function(event) {
