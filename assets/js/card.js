@@ -43,7 +43,19 @@ const card = {
 
   handleEditForm: function(event) {
     event.preventDefault();
-    console.log('je réagis à la soumission');
+    // -faire persister les modifications saisies par l'utilisateur en BDD via un appel ajax à notre api
+    // retrouver l'id de la card
+    const form = event.target;
+    const cardParent = form.closest('.box');
+    // const cardId = cardParent.dataset.cardId;
+    const cardId = cardParent.getAttribute('data-card-id');
+    const data = new FormData(form);
+    fetch(`${util.base_url}/card/${cardId}`, {
+      method: 'PATCH',
+      body: data
+    });
+    // - en cas de succès modifier le dom pour afficher la card modifiée
+    // - sinon afficher une erreur
   },
 
   // on récupère un objet représentant la card
