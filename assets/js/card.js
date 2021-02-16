@@ -16,15 +16,18 @@ const card = {
     util.hideModals();
   },
 
-  // on prévoit ici un deuxième paramètre représentant l'id de la liste dans laquelle on veut la carte
-  makeInDOM: function(cardName, parentId, cardId) {
+  // on récupère un objet représentant la card
+  makeInDOM: function(cardItem) {
+    console.log(cardItem);
     // création de la card dans le dom sur le meme principe que la liste
     const template = document.querySelector('#cardTemplate');
     const clone = template.content.cloneNode(true);
-    clone.querySelector('.card-name').textContent = cardName;
-    clone.querySelector('.box').setAttribute('data-card-id', cardId);
+    clone.querySelector('.card-name').textContent = cardItem.title;
+    const boxElement = clone.querySelector('.box');
+    boxElement.setAttribute('data-card-id', cardItem.id);
+    boxElement.style.borderBottomColor = cardItem.color;
     // on insère la card au bon endroit dans la liste, on utilise ici un selecteur d'attribut
-    document.querySelector(`div[data-list-id="${parentId}"] .panel-block`).appendChild(clone);
+    document.querySelector(`div[data-list-id="${cardItem.list_id}"] .panel-block`).appendChild(clone);
   },
 
   showAddModal: function(event) {

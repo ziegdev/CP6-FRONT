@@ -6,3 +6,7 @@ html {
   background-color: #ccc;
   overflow-x: auto;
 }
+
+.box {
+  border-bottom: 5px solid grey;
+}
