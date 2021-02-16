@@ -50,8 +50,16 @@ const card = {
     const boxElement = clone.querySelector('.box');
     boxElement.setAttribute('data-card-id', cardItem.id);
     boxElement.style.borderBottomColor = cardItem.color;
+    const pencil = clone.querySelector('.edit-btn');
+    pencil.addEventListener('click', card.showEditForm);
     // on insère la card au bon endroit dans la liste, on utilise ici un selecteur d'attribut
     document.querySelector(`div[data-list-id="${cardItem.list_id}"] .panel-block`).appendChild(clone);
+  },
+
+  // quoi faire au click sur le crayon
+  showEditForm: function(event) {
+    event.preventDefault();
+    console.log('je réagis au click');
   },
 
   showAddModal: function(event) {
