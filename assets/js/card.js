@@ -17,12 +17,12 @@ const card = {
   },
 
   // on prévoit ici un deuxième paramètre représentant l'id de la liste dans laquelle on veut la carte
-  makeInDOM: function(cardName, parentId) {
+  makeInDOM: function(cardName, parentId, cardId) {
     // création de la card dans le dom sur le meme principe que la liste
     const template = document.querySelector('#cardTemplate');
     const clone = template.content.cloneNode(true);
     clone.querySelector('.card-name').textContent = cardName;
-    clone.querySelector('.box').setAttribute('data-card-id', '?');
+    clone.querySelector('.box').setAttribute('data-card-id', cardId);
     // on insère la card au bon endroit dans la liste, on utilise ici un selecteur d'attribut
     document.querySelector(`div[data-list-id="${parentId}"] .panel-block`).appendChild(clone);
   },

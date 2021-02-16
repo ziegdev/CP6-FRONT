@@ -22,6 +22,9 @@ const list = {
         // code BLUE : on récupère un objet contenant un tableau
         for (const listItem of body.lists) {
           list.makeInDOM(listItem.name, listItem.id);
+          for (const cardItem of listItem.cards) {
+            card.makeInDOM(cardItem.title, cardItem.list_id, cardItem.id);
+          }
         }
       }
       // si l'api nous répond mais que la réponse est une erreur (par exemple si on obtient code 40X)
