@@ -2,6 +2,7 @@ const card = {
   init: function() {
     card.formElement = document.querySelector('#addCardForm');
     card.modalElement = document.querySelector('#addCardModal');
+    card.formElement.addEventListener('submit', card.handleAddForm);
   },
 
   handleAddForm: async function(event) {

@@ -3,6 +3,8 @@ const list = {
     list.formElement = document.querySelector('#addListForm');
     list.modalElement = document.querySelector('#addListModal');
     list.buttonElement = document.querySelector('#addListButton');
+    list.buttonElement.addEventListener('click', list.showAddModal);
+    list.formElement.addEventListener('submit', list.handleAddForm);
     // j'execute ma tache asynchrone pour récupérer et générer les listes
     list.getListsFromAPI();
   },
