@@ -41,6 +41,11 @@ const card = {
     }
   },
 
+  handleEditForm: function(event) {
+    event.preventDefault();
+    console.log('je réagis à la soumission');
+  },
+
   // on récupère un objet représentant la card
   makeInDOM: function(cardItem) {
     // création de la card dans le dom sur le meme principe que la liste
@@ -50,8 +55,12 @@ const card = {
     const boxElement = clone.querySelector('.box');
     boxElement.setAttribute('data-card-id', cardItem.id);
     boxElement.style.borderBottomColor = cardItem.color;
+    // on écoute le click sur le crayon
     const pencil = clone.querySelector('.edit-btn');
     pencil.addEventListener('click', card.showEditForm);
+    // on écoute la soumission du form
+    const form = clone.querySelector('form');
+    form.addEventListener('submit', card.handleEditForm);
     // on insère la card au bon endroit dans la liste, on utilise ici un selecteur d'attribut
     document.querySelector(`div[data-list-id="${cardItem.list_id}"] .panel-block`).appendChild(clone);
   },
