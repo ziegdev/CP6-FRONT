@@ -1,3 +1,5 @@
+const util = require('./util');
+
 const card = {
   init: function() {
     card.formElement = document.querySelector('#addCardForm');
@@ -87,11 +89,39 @@ const card = {
     // on écoute le click sur le crayon
     const pencil = clone.querySelector('.edit-btn');
     pencil.addEventListener('click', card.showEditForm);
+    // on écoute le click sur la poubelle
+    const trash = clone.querySelector('.delete-btn');
+    trash.addEventListener('click', card.handleDelete);
     // on écoute la soumission du form
     const form = clone.querySelector('form');
     form.addEventListener('submit', card.handleEditForm);
     // on insère la card au bon endroit dans la liste, on utilise ici un selecteur d'attribut
     document.querySelector(`div[data-list-id="${cardItem.list_id}"] .panel-block`).appendChild(clone);
+  },
+
+  handleDelete: async function(event) {
+    event.preventDefault();
+    // identifier l'id de la carte cliquée
+    const trash = event.target;
+    const cardElement = trash.closest('.box');
+    const cardId = cardElement.getAttribute('data-card-id');
+    // appeler l'api pour dire qu'on supprimer la carte cliquée
+    try {
+      const response = await fetch(`${util.base_url}/card/${cardId}`, {
+        method: 'DELETE',
+      });
+      const body = await response.json();
+      if (response.status === 200) {
+        // si tout va bien, supprimer la carte du DOM
+        cardElement.remove();
+      }
+      else {
+        throw new Error(body);
+      }
+    } catch(error) {
+      alert('Impossible de supprimer');
+      console.error(error);
+    }
   },
 
   // quoi faire au click sur le crayon
@@ -136,3 +166,5 @@ const card = {
   },
 
 };
+
+module.exports = card;

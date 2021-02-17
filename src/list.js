@@ -1,3 +1,6 @@
+const card = require('./card');
+const util = require('./util');
+
 const list = {
   init: function() {
     list.formElement = document.querySelector('#addListForm');
@@ -172,3 +175,5 @@ const list = {
   },
 
 };
+
+module.exports = list;

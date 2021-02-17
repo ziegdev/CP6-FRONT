@@ -1,3 +1,6 @@
+const list = require('./list');
+const card = require('./card');
+const util = require('./util');
 
 // on objet qui contient des fonctions
 const app = {

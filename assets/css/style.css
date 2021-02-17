@@ -10,3 +10,7 @@ html {
 .box {
   border-bottom: 5px solid grey;
 }
+
+.list-title {
+  min-height: 1.2em;
+}

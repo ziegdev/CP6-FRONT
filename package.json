@@ -1,0 +1,27 @@
+{
+  "name": "okanban",
+  "version": "1.0.0",
+  "description": "a trello like project",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/app.js -o assets/js/bundle.js -p tinyify",
+    "watch": "watchify src/app.js -o assets/js/bundle.js --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Pan/S07-oKanban-front-alexisOclock.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Pan/S07-oKanban-front-alexisOclock/issues"
+  },
+  "homepage": "https://github.com/O-clock-Pan/S07-oKanban-front-alexisOclock#readme",
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "tinyify": "^3.0.0",
+    "watchify": "^4.0.0"
+  }
+}
